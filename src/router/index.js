@@ -7,6 +7,11 @@ const routes = [
     name: "home",
     component: Home,
   },
+  {
+    path: "/letter/:letter",
+    name: "byLetter",
+    component: Home,
+  },
 ];
 
 const router = createRouter({
