@@ -1,5 +1,29 @@
 <template>
-  <div>By Letter</div>
+  <div class="flex justify-center gap-2 mt-2">
+    <router-link
+      :to="{ name: 'byLetter', params: { letter } }"
+      v-for="letter of letters"
+    >
+      {{ letter }}
+    </router-link>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 p-8 md:grid-cols-3">
+    <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" />
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed, onMounted } from "vue";
+import store from "../store";
+import { useRoute } from "vue-router";
+import MealItem from "../components/MealItem.vue";
+
+const route = useRoute();
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const meals = computed(() => store.state.mealsByLetter);
+
+onMounted(() => {
+  store.dispatch("searchMealsByLetter", route.params.letter);
+});
+</script>
