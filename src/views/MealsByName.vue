@@ -53,13 +53,7 @@
           non aut!
         </p>
         <div class="flex items-center justify-between">
-          <a
-            :href="meal.strYoutube"
-            target="_blank"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-800 transition-colors bg-red-100 border border-transparent rounded-lg gap-x-2 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none"
-          >
-            YouTube
-          </a>
+          <YouTubeButton :href="meal.strYoutube" />
         </div>
       </div>
     </div>
@@ -70,6 +64,7 @@
 import { computed, onMounted, ref } from "vue";
 import store from "../store";
 import { useRoute } from "vue-router";
+import YouTubeButton from "../components/YouTubeButton.vue";
 
 const route = useRoute();
 const keyword = ref("");
