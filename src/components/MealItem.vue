@@ -4,7 +4,7 @@
       <div class="p-3">
         <img
           :src="meal.strMealThumb"
-          :alt="strMeal"
+          :alt="meal.strMeal"
           class="object-cover w-full h-48 rounded-lg"
         />
       </div>
@@ -53,7 +53,12 @@
 </template>
 
 <script setup>
+import YouTubeButton from "./YouTubeButton.vue";
+
 const { meal } = defineProps({
-  meal: Object,
+  meal: {
+    required: true,
+    type: Object,
+  },
 });
 </script>
