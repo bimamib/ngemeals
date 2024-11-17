@@ -30,33 +30,7 @@
     </div>
   </div>
   <div class="grid grid-cols-1 gap-5 p-8 md:grid-cols-3">
-    <div
-      v-for="meal of meals"
-      :key="meal.idMeal"
-      class="bg-white border shadow rounded-xl"
-    >
-      <router-link :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
-        <div class="p-3">
-          <img
-            :src="meal.strMealThumb"
-            :alt="strMeal"
-            class="object-cover w-full h-48 rounded-lg"
-          />
-        </div>
-      </router-link>
-      <div class="p-3">
-        <h2 class="font-bold">{{ meal.strMeal }}</h2>
-        <p class="mb-4 text-justify">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ex,
-          sequi, ab dolore harum sapiente blanditiis ipsam debitis, voluptatum
-          minima velit itaque officiis dolores doloremque. Voluptatibus sunt ex
-          non aut!
-        </p>
-        <div class="flex items-center justify-between">
-          <YouTubeButton :href="meal.strYoutube" />
-        </div>
-      </div>
-    </div>
+    <MealItem v-for="meal of meals" :key="meal.idMeal" />
   </div>
 </template>
 
@@ -65,6 +39,7 @@ import { computed, onMounted, ref } from "vue";
 import store from "../store";
 import { useRoute } from "vue-router";
 import YouTubeButton from "../components/YouTubeButton.vue";
+import MealItem from "../components/MealItem.vue";
 
 const route = useRoute();
 const keyword = ref("");
