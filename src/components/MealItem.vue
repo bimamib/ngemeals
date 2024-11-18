@@ -28,6 +28,7 @@ const { meal } = defineProps({
   meal: {
     required: true,
     type: Object,
+    default: () => ({}),
   },
 });
 </script>
