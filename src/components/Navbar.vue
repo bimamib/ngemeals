@@ -4,7 +4,7 @@
   >
     <router-link
       :to="{ name: 'home' }"
-      class="inline-flex items-center h-full px-5"
+      class="inline-flex items-center h-full px-5 font-bold text-red-600"
     >
       Home
     </router-link>
