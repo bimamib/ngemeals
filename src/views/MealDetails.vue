@@ -1,10 +1,16 @@
 <template>
   <!-- Detail Meals -->
-  <div class="max-w-[800px] mx-auto p-8">
-    <h1 class="mb-5 text-5xl font-bold">{{ meal.strMeal }}</h1>
-    <img :src="meal.strMealThumb" :alt="meal.strMeal" class="max-w-[100%]" />
+  <div class="max-w-[800px] mx-auto p-10">
+    <h1 class="mb-5 text-4xl font-bold">{{ meal.strMeal }}</h1>
+    <div class="px-4 py-4 bg-white shadow rounded-xl">
+      <img
+        :src="meal.strMealThumb"
+        :alt="meal.strMeal"
+        class="max-w-[100%] rounded-lg"
+      />
+    </div>
     <div
-      class="grid grid-cols-1 py-2 text-lg sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3"
+      class="grid grid-cols-1 px-2 py-2 text-lg sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3"
     >
       <div>
         <strong class="font-bold">Category:</strong> {{ meal.strCategory }}
@@ -13,7 +19,7 @@
       <div><strong class="font-bold">Tags:</strong> {{ meal.strTags }}</div>
     </div>
 
-    <div class="my-3">
+    <div class="my-3 text-justify">
       {{ meal.strInstructions }}
     </div>
 
@@ -43,7 +49,7 @@
       </div>
 
       <div class="mt-4">
-        <YouTubeButton :href="meal.strYoutube">YouTube</YouTubeButton>
+        <YouTubeButton :href="meal.strYoutube" />
         <a
           :href="meal.strSource"
           target="_blank"
