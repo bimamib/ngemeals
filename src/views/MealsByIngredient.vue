@@ -5,7 +5,7 @@
     </h1>
   </div>
 
-  <Meals :meals="meals" />
+  <Meals :meals="meals || []" />
 </template>
 
 <script setup>
