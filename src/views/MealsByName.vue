@@ -1,5 +1,8 @@
 <template>
   <div class="p-8 pb-0">
+    <h1 class="mb-4 text-4xl font-bold text-red-600">Search Meals by Name</h1>
+  </div>
+  <div class="px-8 pb-3">
     <div class="relative">
       <div
         class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5"
@@ -21,7 +24,7 @@
         </svg>
       </div>
       <input
-        class="block w-full text-sm border-gray-200 rounded-lg ps-10 pe-4 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+        class="block w-full mb-3 text-sm border-gray-200 rounded-lg ps-10 pe-4 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
         type="text"
         v-model="keyword"
         placeholder="Search for Meals..."
@@ -44,7 +47,11 @@ const keyword = ref("");
 const meals = computed(() => store.state.searchedMeals);
 
 function searchMeals() {
-  store.dispatch("searchMeals", keyword.value);
+  if (keyword.value) {
+    store.dispatch("searchMeals", keyword.value);
+  } else {
+    store.commit("setSearchedMeals", []);
+  }
 }
 
 onMounted(() => {
