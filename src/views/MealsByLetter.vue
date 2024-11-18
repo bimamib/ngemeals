@@ -13,7 +13,7 @@
     </router-link>
   </div>
 
-  <Meals :meals="meals" />
+  <Meals :meals="meals || []" />
 </template>
 
 <script setup>
