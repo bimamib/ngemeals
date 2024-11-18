@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col p-8 pb-0 text-red-600">
-    <h1 class="mb-4 text-4xl font-bold">Random Meals</h1>
+    <h1 class="mb-4 text-4xl font-bold">Random Meals Meals</h1>
   </div>
   <Meals :meals="meals || []" />
 </template>
