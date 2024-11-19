@@ -4,7 +4,10 @@
   >
     <MealItem v-for="meal of meals" :key="meal.idMeal" :meal="meal" />
   </div>
-  <div v-if="!meals.length" class="flex justify-center p-8 text-slate-600">
+  <div
+    v-if="!meals.length"
+    class="flex justify-center p-8 font-medium text-slate-500"
+  >
     There are no meals
   </div>
 </template>
