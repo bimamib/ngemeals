@@ -9,17 +9,35 @@
         class="max-w-[100%] rounded-lg"
       />
     </div>
-    <div
-      class="grid grid-cols-1 px-2 py-2 text-lg sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3"
-    >
-      <div>
-        <strong class="font-bold">Category:</strong> {{ meal.strCategory }}
+    <div class="grid grid-cols-2 gap-4 px-2 py-2 text-lg jus">
+      <div class="flex flex-wrap items-center gap-1">
+        <strong class="font-bold">Category:</strong>
+        <span class="px-2 py-1 text-sm font-normal rounded-lg bg-slate-200">
+          {{ meal.strCategory }}
+        </span>
       </div>
-      <div><strong class="font-bold">Area:</strong> {{ meal.strArea }}</div>
-      <div><strong class="font-bold">Tags:</strong> {{ meal.strTags }}</div>
+      <div class="flex flex-wrap items-center gap-1">
+        <strong class="font-bold">Area:</strong>
+        <span class="px-2 py-1 text-sm font-normal rounded-lg bg-slate-200">
+          {{ meal.strArea }}
+        </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-1">
+        <strong class="font-bold">Tags:</strong>
+        <span
+          v-for="tag in getTags"
+          :key="tag"
+          class="px-2 py-1 text-sm font-normal rounded-lg bg-slate-200"
+        >
+          {{ tag }}
+        </span>
+        <span v-if="!getTags.length" class="text-gray-500"
+          >No tags available</span
+        >
+      </div>
     </div>
 
-    <div class="my-3 text-justify">
+    <div class="my-3 text-base font-normal text-justify">
       {{ meal.strInstructions }}
     </div>
 
@@ -63,13 +81,22 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import axiosClient from "../axiosClient";
 import YouTubeButton from "../components/YouTubeButton.vue";
 
 const route = useRoute();
 const meal = ref({});
+
+const getTags = computed(() => {
+  if (!meal.value.strTags) return [];
+  // Filter untuk menghilangkan string kosong dan whitespace
+  return meal.value.strTags
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter((tag) => tag.length > 0);
+});
 
 onMounted(() => {
   axiosClient.get(`lookup.php?i=${route.params.id}`).then(({ data }) => {
