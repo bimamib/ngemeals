@@ -1,6 +1,7 @@
 <template>
   <!-- Detail Meals -->
-  <div class="max-w-[800px] mx-auto p-10">
+  <Loading :visible="loading" />
+  <div v-if="!loading" class="max-w-[800px] mx-auto p-10">
     <h1 class="mb-5 text-4xl font-bold">{{ meal.strMeal }}</h1>
     <div class="px-4 py-4 bg-white shadow rounded-xl">
       <img
@@ -9,7 +10,7 @@
         class="max-w-[100%] rounded-lg"
       />
     </div>
-    <div class="grid grid-cols-2 gap-4 px-2 py-2 text-lg jus">
+    <div class="flex flex-wrap gap-4 px-2 py-2 text-lg">
       <div class="flex flex-wrap items-center gap-1">
         <strong class="font-bold">Category:</strong>
         <span class="px-2 py-1 text-sm font-normal rounded-lg bg-slate-200">
@@ -85,9 +86,11 @@ import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import axiosClient from "../axiosClient";
 import YouTubeButton from "../components/YouTubeButton.vue";
+import Loading from "../components/Loading.vue";
 
 const route = useRoute();
 const meal = ref({});
+const loading = ref(true);
 
 const getTags = computed(() => {
   if (!meal.value.strTags) return [];
@@ -101,6 +104,7 @@ const getTags = computed(() => {
 onMounted(() => {
   axiosClient.get(`lookup.php?i=${route.params.id}`).then(({ data }) => {
     meal.value = data.meals[0] || {};
+    loading.value = false;
   });
 });
 </script>
