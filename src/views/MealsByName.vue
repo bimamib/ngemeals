@@ -24,7 +24,7 @@
         </svg>
       </div>
       <input
-        class="block w-full mb-3 text-sm border-gray-200 rounded-lg ps-10 pe-4 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+        class="block w-full py-3 mb-3 text-sm border-gray-200 rounded-lg ps-10 pe-4 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
         type="text"
         v-model="keyword"
         placeholder="Search for Meals..."
