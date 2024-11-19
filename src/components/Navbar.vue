@@ -4,7 +4,13 @@
   >
     <div class="flex">
       <!-- Logo atau brand -->
-      <img src="/public/ngemeals-logo.png" alt="" class="w-40" />
+      <router-link :to="{ name: 'home' }">
+        <img
+          src="/public/ngemeals-logo.png"
+          alt=""
+          class="w-40 cursor-pointer"
+        />
+      </router-link>
     </div>
     <div
       class="hidden p-2 transition bg-gray-100 rounded-lg md:flex hover:bg-gray-200"
@@ -15,19 +21,6 @@
         role="tablist"
         aria-orientation="horizontal"
       >
-        <router-link
-          :to="{ name: 'home' }"
-          class="tab-item"
-          role="tab"
-          id="segment-item-1"
-          aria-selected="true"
-          aria-controls="segment-1"
-          :class="{ 'bg-white text-gray-700 active': isActive('home') }"
-          @click="setActive('home')"
-        >
-          Home
-        </router-link>
-
         <router-link
           :to="{ name: 'byName' }"
           class="tab-item"
@@ -96,17 +89,6 @@
       class="absolute left-0 z-30 w-full bg-white border shadow-lg top-20"
     >
       <nav class="flex flex-col items-center p-4 gap-y-2">
-        <router-link
-          :to="{ name: 'home' }"
-          class="tab-item"
-          :class="{ 'bg-gray-100': isActive('home') }"
-          @click="
-            setActive('home');
-            toggleMenu();
-          "
-        >
-          Home
-        </router-link>
         <router-link
           :to="{ name: 'byName' }"
           class="tab-item"
