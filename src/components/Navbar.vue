@@ -4,7 +4,7 @@
   >
     <div class="flex">
       <!-- Logo atau brand -->
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'home' }" @click="setActive('home')">
         <img
           src="/public/ngemeals-logo.png"
           alt=""
