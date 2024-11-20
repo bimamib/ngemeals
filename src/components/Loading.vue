@@ -11,7 +11,10 @@
 
 <script setup>
 defineProps({
-  visible: Boolean,
+  visible: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
