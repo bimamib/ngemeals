@@ -6,7 +6,7 @@
       <!-- Logo atau brand -->
       <router-link :to="{ name: 'home' }" @click="setActive('home')">
         <img
-          src="/public/ngemeals-logo.png"
+          src="/src/assets/ngemeals-logo.png"
           alt=""
           class="w-40 cursor-pointer"
         />
