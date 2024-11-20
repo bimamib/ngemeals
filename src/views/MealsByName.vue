@@ -33,31 +33,34 @@
     </div>
   </div>
 
-  <Meals :meals="meals || []" />
+  <Loading :visible="loading" />
+  <Meals v-if="!loading" :meals="meals || []" />
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import store from "../store";
-import { useRoute } from "vue-router";
+import Loading from "../components/Loading.vue";
 import Meals from "../components/Meals.vue";
 
-const route = useRoute();
 const keyword = ref("");
+const loading = ref(false);
 const meals = computed(() => store.state.searchedMeals);
 
-function searchMeals() {
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function searchMeals() {
+  console.log("Loading starts"); // Debug
+  loading.value = true;
+  await delay(1000);
   if (keyword.value) {
-    store.dispatch("searchMeals", keyword.value);
+    await store.dispatch("searchMeals", keyword.value);
   } else {
     store.commit("setSearchedMeals", []);
   }
+  loading.value = false;
+  console.log("Loading ends"); // Debug
 }
-
-onMounted(() => {
-  keyword.value = route.params.name;
-  if (keyword.value) {
-    searchMeals();
-  }
-});
 </script>
