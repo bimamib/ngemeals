@@ -6,9 +6,9 @@
       <!-- Logo atau brand -->
       <router-link :to="{ name: 'home' }" @click="setActive('home')">
         <img
-          src="/src/assets/ngemeals-logo.png"
+          src="/src/assets/ngemeals_logo2.png"
           alt=""
-          class="w-40 cursor-pointer"
+          class="w-64 cursor-pointer"
         />
       </router-link>
     </div>
