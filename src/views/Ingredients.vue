@@ -2,7 +2,8 @@
   <div class="p-8 pb-0">
     <h1 class="mb-4 text-4xl font-bold text-red-600">Ingredients</h1>
   </div>
-  <div class="px-8">
+  <Loading :visible="loading" />
+  <div v-if="!loading" class="px-8">
     <div class="relative">
       <div
         class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5"
@@ -53,10 +54,13 @@ import { computed, onMounted, ref } from "vue";
 import axiosClient from "../axiosClient";
 import { useRouter } from "vue-router";
 import store from "../store";
+import Loading from "../components/Loading.vue";
 
 const router = useRouter();
 const keyword = ref("");
 const ingredients = ref([]);
+const loading = ref(true);
+
 const computedIngredients = computed(() => {
   if (!computedIngredients) return ingredients;
   return ingredients.value.filter((i) =>
@@ -64,17 +68,30 @@ const computedIngredients = computed(() => {
   );
 });
 
-function openIngredient(ingredient) {
+async function openIngredient(ingredient) {
+  console.log("Loading starts for ingredient:", ingredient.strIngredient); // Debug
+  loading.value = true;
+
+  // Commit ingredient ke store
   store.commit("setIngredient", ingredient);
-  router.push({
+
+  // Simulasi delay untuk memastikan loading terlihat
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Pindah ke halaman byIngredient
+  await router.push({
     name: "byIngredient",
     params: { ingredient: ingredient.strIngredient },
   });
+
+  loading.value = false;
+  console.log("Loading ends for ingredient:", ingredient.strIngredient); // Debug
 }
 
 onMounted(() => {
   axiosClient.get("list.php?i=list").then(({ data }) => {
     ingredients.value = data.meals;
+    loading.value = false;
   });
 });
 </script>
