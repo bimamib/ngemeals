@@ -32,7 +32,9 @@
         >
           {{ tag }}
         </span>
-        <span v-if="!getTags.length" class="text-gray-500"
+        <span
+          v-if="!getTags.length"
+          class="px-2 py-1 text-sm font-normal rounded-lg bg-slate-200"
           >No tags available</span
         >
       </div>
