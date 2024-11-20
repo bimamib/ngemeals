@@ -18,7 +18,7 @@ const loading = ref(true);
 
 onMounted(async () => {
   for (let i = 0; i < 10; i++) {
-    await axiosClient.get("random.php").then(({ data }) => {
+    await axiosClient.get(`random.php`).then(({ data }) => {
       meals.value.push(data.meals[0]);
     });
   }
