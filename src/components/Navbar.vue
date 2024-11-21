@@ -13,7 +13,7 @@
       </router-link>
     </div>
     <div
-      class="hidden p-2 transition bg-gray-100 rounded-lg md:flex hover:bg-gray-200"
+      class="hidden p-1 transition bg-gray-100 border rounded-xl md:flex hover:bg-gray-200"
     >
       <nav
         class="flex gap-x-1"
